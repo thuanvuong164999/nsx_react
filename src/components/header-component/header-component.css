@@ -1,0 +1,17 @@
+.main-header{
+    height: 50%;
+    width: 100%;
+    padding: 20px;
+    background-color: aqua;
+}
+.main-header ul{
+    list-style: none;
+}
+
+.main-header ul li{
+    display: inline;
+    padding: 10px;
+    color: blue;
+    text-transform: uppercase;
+}
+
