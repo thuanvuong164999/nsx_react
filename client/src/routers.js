@@ -18,7 +18,7 @@ const MainRouter = () => (
             )
         }></Route>
             //tao api
-            <Route exact path='/' component={HomePage}></Route>
+            <Route path='/home' component={HomePage}></Route>
             <Route path='/Products' component={ProductsPage}></Route>
             <Route path='/Farms' component={FarmsPage}></Route>
             <Route path='/product/:id' component={DetailPage}></Route>

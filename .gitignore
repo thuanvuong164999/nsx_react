@@ -2,6 +2,10 @@
 
 # dependencies
 client/node_modules
+node_modules
+package-lock.json
+apis/node_modules
+apis/package-lock.json
 client/.pnp
 client/.pnp.js
 

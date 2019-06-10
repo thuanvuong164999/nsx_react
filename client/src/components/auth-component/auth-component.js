@@ -8,13 +8,13 @@ class Auth extends React.Component {
         super(props)
         const cookies = new Cookies();
         this.state = {
-            logined: cookies.get('isLogin') == 'true'
+            logined: cookies.get('isLogin') === 'true'
         }
         console.log(this.state)
     }
 
     renderRedirect(){
-        if(this.state.logined != 'true'){
+        if(this.state.logined !== 'true'){
             return <Redirect to={this.props.orRedirectTo}></Redirect>
         } else {
             return this.props.orRender
