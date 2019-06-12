@@ -4,22 +4,25 @@ const app = express()
 const port = 5000
 const http = require('http')
 // http được install sẳn vời nodejs
-const socketID = require('socket.io')
+const socketIO = require('socket.io')
+const server = http.createServer(app)
+// khởi tạo 1 server thông qua http
 const io = socketIO(server)
 
 io.on('connection', (socket) => {
     console.log('Connected')
+    socket.on('send-message', (value) => {
+        io.sockets.emit('receive-messenger', value)
+    })
     socket.on('disconnect', () =>{
         console.log('Client Disconnected.')
     })
 })
+// socket xuất ra connected hoặc disconnected khi npm start client
 
 app.get('/', (req, res) => {
     res.send('Hello World')
 })
-
-const server = http.createServer(app)
-// khởi tạo 1 server thông qua http
 
 server.listen(port, () => {
     console.log(`Server started with port. ${port}`)

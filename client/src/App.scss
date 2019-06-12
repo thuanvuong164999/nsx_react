@@ -1,0 +1,38 @@
+.App {
+  text-align: center;
+  background-color: #282c34;
+  height: 100vh;
+  padding: 100px;
+  .App-Container{
+    margin: auto;
+    width: 80%;
+    .chat-box{
+      width: 100%;
+      .receive-messenger{
+        width: 100%;
+        textarea{
+          width: 80%;
+          height: 300px;
+          max-height: 300px;
+          min-height: 300px;
+          border-radius: 15px;
+          padding: 10px;
+        }
+      }
+      .send-messenger{
+        input{
+          width: 80%;
+          height: 40px;
+          max-height: 40px;
+          min-height: 40px;
+          border-radius: 15px;
+          margin-top: 10px;
+          padding: 10px;
+        }
+      }
+    }
+  }
+}
+
+
+
