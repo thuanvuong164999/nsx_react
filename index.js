@@ -5,6 +5,14 @@ const port = 5000
 const http = require('http')
 // http được install sẳn vời nodejs
 const socketID = require('socket.io')
+const io = socketIO(server)
+
+io.on('connection', (socket) => {
+    console.log('Connected')
+    socket.on('disconnect', () =>{
+        console.log('Client Disconnected.')
+    })
+})
 
 app.get('/', (req, res) => {
     res.send('Hello World')
