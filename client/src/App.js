@@ -23,8 +23,15 @@ componentDidMount() {
   this.onReceived()
   this.onJoined()
   this.onLeaved()
+  this.onTypingFromMember()
 }
   // socket xuất ra connected hoặc disconnected khi npm start client
+
+  onTypingFromMember(){
+    socket.on('member_typing', (user) => {
+      this.setMessage(`${user.userName} typing ...`)
+    })
+  }
 
   onReceived() {
     socket.on('receive-messenger', (value) => {
@@ -48,7 +55,7 @@ componentDidMount() {
 
   setMessage(value){
     let message = this.state.receiveMessenger
-    message = message + '\n' + value
+    message = value + '\n' + message
     this.setState({
       receiveMessenger:message
     })
@@ -94,6 +101,12 @@ componentDidMount() {
     })
   }
 
+  onChange = event => {
+    socket.emit('typing', {
+      userName: this.state.userName
+    })
+  }
+
   render(){
     return (
       <div className="App">
@@ -103,7 +116,7 @@ componentDidMount() {
               <textarea value = {this.state.receiveMessenger}></textarea>
             </div>
             <div className='send-messenger'>
-              <input type='text' onKeyPress={this.onKeyPress}></input>
+              <input type='text' onKeyPress={this.onKeyPress} onChange={this.onChange}></input>
               <button type='submit' onClick={e => this.onClick(e)}>{this.state.buttonTitle}</button>
             </div>
           </div>

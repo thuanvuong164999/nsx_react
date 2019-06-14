@@ -28,6 +28,12 @@ io.on('connection', (socket) => {
         console.log(`${value.userName} leaved`)
     })
 
+    socket.on('typing', (value) =>{
+        io.in(room).emit('member_typing', {
+            userName: value.userName
+        })
+    })
+
     socket.on('disconnect', () =>{
         console.log('Client Disconnected.')
     })
