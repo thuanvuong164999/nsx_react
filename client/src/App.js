@@ -1,40 +1,99 @@
 import React from 'react';
 import './App.scss';
 import socketIOClient from 'socket.io-client'
+const socket = socketIOClient('192.168.1.152:5000')
+//khai bao socket la bien khong thay doi
 
 class App extends React.Component{
   constructor() {
     super()
     this.state = {
       socketServer: '192.168.1.152:5000',
-      receiveMessenger: ''
+      receiveMessenger: '',
+      buttonTitle: 'Join',
+      userName: 'ThuanYH'
     }
   }
   // 192.168.1.152:5000 là server chung 
 
 componentDidMount() {
-  let socket = socketIOClient(this.state.socketServer)
-  let self = this
   socket.on('receive-message', (value) => {
-    let message = self.state.receiveMessenger
-    message = message + '\n' + value
-    self.setState({
-      receiveMessenger:message
-    })
+    this.setMessage(`${value.userName}: ${value.message}`)
   })
+  this.onReceived()
+  this.onJoined()
+  this.onLeaved()
 }
   // socket xuất ra connected hoặc disconnected khi npm start client
 
+  onReceived() {
+    socket.on('receive-messenger', (value) => {
+      this.setMessage(`${value.userName}: ${value.message}`)
+    })
+  }
+
+  onJoined() {
+    socket.on('joined',(user) => {
+      console.log(user)
+      this.setMessage(`User ${user.userName} joined`)
+    })
+  }
+
+  onLeaved() {
+    socket.on('leaved',(user) => {
+      console.log(user)
+      this.setMessage(`User ${user.userName} leaved`)
+    })
+  }
+
+  setMessage(value){
+    let message = this.state.receiveMessenger
+    message = message + '\n' + value
+    this.setState({
+      receiveMessenger:message
+    })
+  }
+
   onKeyPress = event => {
-    let socket = socketIOClient(this.state.socketServer)
     if (event.key === 'Enter'){
       console.log(event.target.value)
-      socket.emit('send-message', event.target.value)
+      socket.emit('send-message', {
+        userName: this.state.userName,
+        message: event.target.value
+      })
     }
     // sử dụng dấu === cho so sánh bằng
     // console.log(event.key, event.keyCode)
     // console.log(event.target.value)
   }
+
+  onClick = event => {
+    let Title = 'Join'
+    if(this.state.buttonTitle === 'Join') {  
+      Title = 'Leave'
+      this.join()
+    }else{
+      this.leave()
+    }
+    this.setState({
+      buttonTitle: Title
+    })
+  }
+
+  join(){
+    socket.emit('join', {
+      userName:this.state.userName
+    })
+  }
+  //socket.emit() gui tin hieu cho server
+  //server quy dinh join viet thuong
+
+  leave(){
+    socket.emit('leave', {
+      userName:this.state.userName
+    })
+  }
+
   render(){
     return (
       <div className="App">
@@ -45,6 +104,7 @@ componentDidMount() {
             </div>
             <div className='send-messenger'>
               <input type='text' onKeyPress={this.onKeyPress}></input>
+              <button type='submit' onClick={e => this.onClick(e)}>{this.state.buttonTitle}</button>
             </div>
           </div>
         </div>

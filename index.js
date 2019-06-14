@@ -12,8 +12,22 @@ const io = socketIO(server)
 io.on('connection', (socket) => {
     console.log('Connected')
     socket.on('send-message', (value) => {
-        io.sockets.emit('receive-messenger', value)
+        io.in(room).emit('receive-messenger', value)
     })
+
+    socket.on('join', (value) => {
+        socket.join(room)
+        // phuong thuc join
+        io.in(room).emit('joined', value)
+        console.log(`${value.userName} joined`)
+    })
+    socket.on('leave', (value) => {
+        socket.leave(room)
+        // phuong thuc leave
+        io.in(room).emit('leaved', value)
+        console.log(`${value.userName} leaved`)
+    })
+
     socket.on('disconnect', () =>{
         console.log('Client Disconnected.')
     })
