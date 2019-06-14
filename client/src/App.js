@@ -29,9 +29,12 @@ componentDidMount() {
 
   onTypingFromMember(){
     socket.on('member_typing', (user) => {
-      this.setMessage(`${user.userName} typing ...`)
+      if(user.userName != this.state.userName){
+        this.setMessage(`${user.userName} typing ....`)
+      }
     })
   }
+  // ràn buột dk để typing không hiện ở trang mình
 
   onReceived() {
     socket.on('receive-messenger', (value) => {
