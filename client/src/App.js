@@ -11,7 +11,8 @@ class App extends React.Component{
       socketServer: '192.168.1.152:5000',
       receiveMessenger: '',
       buttonTitle: 'Join',
-      userName: 'ThuanYH'
+      userName: 'ThuanYH',
+      afterEnter:''
     }
   }
   // 192.168.1.152:5000 là server chung 
@@ -29,7 +30,7 @@ componentDidMount() {
 
   onTypingFromMember(){
     socket.on('member_typing', (user) => {
-      if(user.userName != this.state.userName){
+      if(user.userName !== this.state.userName){
         this.setMessage(`${user.userName} typing ....`)
       }
     })
@@ -71,7 +72,11 @@ componentDidMount() {
         userName: this.state.userName,
         message: event.target.value
       })
+      this.setState({
+        afterEnter: ''
+      })
     }
+    // sau khi Enter, receiveMessenger reset
     // sử dụng dấu === cho so sánh bằng
     // console.log(event.key, event.keyCode)
     // console.log(event.target.value)
@@ -105,6 +110,10 @@ componentDidMount() {
   }
 
   onChange = event => {
+    this.setState({
+      afterEnter: event.target.value
+    })
+    // message được thay đổi thông qua onChange
     socket.emit('typing', {
       userName: this.state.userName
     })
@@ -116,10 +125,12 @@ componentDidMount() {
         <div className='App-Container'>
           <div className='chat-box'>
             <div className='receive-messenger'>
+              {/* <img scr='' alt='' class='avatar'> */}
               <textarea value = {this.state.receiveMessenger}></textarea>
+              <span class='time'>time</span>
             </div>
             <div className='send-messenger'>
-              <input type='text' onKeyPress={this.onKeyPress} onChange={this.onChange}></input>
+              <input type='text' value={this.state.afterEnter} onKeyPress={this.onKeyPress} onChange={this.onChange}></input>
               <button type='submit' onClick={e => this.onClick(e)}>{this.state.buttonTitle}</button>
             </div>
           </div>
