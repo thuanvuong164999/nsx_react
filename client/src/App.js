@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.scss';
 import socketIOClient from 'socket.io-client'
+import MessageList from '../../../reactjs-basic-chat/nsx/src/components/message-list/message-list';
 const socket = socketIOClient('192.168.1.152:5000')
 //khai bao socket la bien khong thay doi
 
@@ -12,7 +13,9 @@ class App extends React.Component{
       receiveMessenger: '',
       buttonTitle: 'Join',
       userName: 'ThuanYH',
-      afterEnter:''
+      afterEnter:'',
+      message: '',
+      messages: []
     }
   }
   // 192.168.1.152:5000 là server chung 
@@ -38,8 +41,21 @@ componentDidMount() {
   // ràn buột dk để typing không hiện ở trang mình
 
   onReceived() {
-    socket.on('receive-messenger', (value) => {
-      this.setMessage(`${value.userName}: ${value.message}`)
+    // socket.on('receive-messenger', (value) => {
+    //   this.setMessage(`${value.userName}: ${value.message}`)
+    // })
+    socket.on('receive-message', (value)=>{
+      let item ={
+        user: value.userName,
+        message: value.message,
+        fr:value.userName === this.state.userName ? 'fr':''
+      }
+      let items = this.state.messages
+      items.push(item)
+      this.setState({
+        messages: items
+      })
+      this.setMessage(`${value.userName}:${value.message}`)
     })
   }
 
@@ -71,6 +87,9 @@ componentDidMount() {
       socket.emit('send-message', {
         userName: this.state.userName,
         message: event.target.value
+      })
+      this.setState({
+        message: ''
       })
       this.setState({
         afterEnter: ''
@@ -126,8 +145,9 @@ componentDidMount() {
           <div className='chat-box'>
             <div className='receive-messenger'>
               {/* <img scr='' alt='' class='avatar'> */}
-              <textarea value = {this.state.receiveMessenger}></textarea>
-              <span class='time'>time</span>
+              {/* <textarea value = {this.state.receiveMessenger}></textarea>
+              <span class='time'>time</span> */}
+              {<MessageList messages={this.state.messages}></MessageList>}
             </div>
             <div className='send-messenger'>
               <input type='text' value={this.state.afterEnter} onKeyPress={this.onKeyPress} onChange={this.onChange}></input>
