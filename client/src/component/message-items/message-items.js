@@ -10,12 +10,17 @@ class MessageItem extends React.Component {
         return(
             <React.Fragment>
                 <div className='message-item'>
-                    <div className={'message-item-avatar' + this.props.value.fr}>
-                        <div className='avatar-img'></div>
+                    <div className={'message-item-avatar ' + this.props.value.fr}>
+                    {/* sau message-item-avatar phải có dấu cách để phân biệt fr */}
+                        <div className='avatar-img'>
+                            <div>{this.props.value.avatar}</div>
+                        </div>
                     </div>
-                    <div className={'message-list-content' + this.props.value.fr}>
+                    <div className={'message-list-content ' + this.props.value.fr}> 
                         <div className='content'>
-                            {this.props.value.message}
+                            <div dangerouslySetInnerHTML={{__html:this.props.value.message}}></div>
+                            {/* công dụng: xử lý ký hiệu icon từ code sang icon */}
+                            {/* {this.props.value.message}  code cũ*/}
                         </div>
                         <div className='created'>
                             {this.props.value.created}

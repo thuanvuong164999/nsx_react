@@ -12,6 +12,11 @@ const io = socketIO(server)
 io.on('connection', (socket) => {
     console.log('Connected')
     socket.on('send-message', (value) => {
+        // let msg = value.message
+        // console.log(value.replace(/\:\)/g, '<i class="fas fa-smile"></i>'))
+        // value.message = msg.replace(/\:\)/g, '<i class="fas fa-smile"></i>')
+        value.message = convert2Icon(value.message)
+        value.avatar = createAvatar(value.userName)
         io.in(room).emit('receive-messenger', value)
     })
 
@@ -53,3 +58,16 @@ server.listen(port, () => {
     // comback thông tin khi port hk sử dụng được
 })
 
+function convert2Icon(){
+    return message
+        .replace(/\:\)/gi, '<i class="fas fa-smile"></i>')
+        .replace(/\:\(/gi, '<i class="fas fa-frown"></i>')
+        .replace(/\;\)/gi, '<i class="far fa-sad-cry"></i>')
+        .replace(/\;\o/gi, '<i class="far fa-grin-tongue-wink"></i>')
+}
+//  ký hiệu của mã là (/\<ký hiệu 1>\<ký hiệu 2>/gi, '<mã icon>'
+// gi : không phân biệt hoa thường
+
+function createAvatar(userStr){
+    return userStr.substr(0, 2)
+}

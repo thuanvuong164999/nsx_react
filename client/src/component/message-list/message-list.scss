@@ -1,9 +1,16 @@
 .message-list-container {
     height: 300px;
-    width: 100%;
+    text-align: left;
+    margin: auto;
+    width: 80%;
+    border-radius: 10px;
     position: relative;
+    background: #fff;
     .message-list {
         list-style: none;
         position: relative;
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: 300px;
     }    
 }

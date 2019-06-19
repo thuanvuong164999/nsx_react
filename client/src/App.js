@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 import socketIOClient from 'socket.io-client'
-import MessageList from '../../../reactjs-basic-chat/nsx/src/components/message-list/message-list';
+import MessageList from './component/message-list/message-list';
 const socket = socketIOClient('192.168.1.152:5000')
 //khai bao socket la bien khong thay doi
 
@@ -47,6 +47,7 @@ componentDidMount() {
     socket.on('receive-message', (value)=>{
       let item ={
         user: value.userName,
+        avatar: value.avatar,
         message: value.message,
         fr:value.userName === this.state.userName ? 'fr':''
       }
@@ -144,9 +145,7 @@ componentDidMount() {
         <div className='App-Container'>
           <div className='chat-box'>
             <div className='receive-messenger'>
-              {/* <img scr='' alt='' class='avatar'> */}
-              {/* <textarea value = {this.state.receiveMessenger}></textarea>
-              <span class='time'>time</span> */}
+              {/* <textarea value = {this.state.receiveMessenger}></textarea> */}
               {<MessageList messages={this.state.messages}></MessageList>}
             </div>
             <div className='send-messenger'>
