@@ -2,14 +2,14 @@ import React from 'react';
 import './App.scss';
 import socketIOClient from 'socket.io-client'
 import MessageList from './component/message-list/message-list';
-const socket = socketIOClient('192.168.1.152:5000')
+const socket = socketIOClient('https://shielded-springs-60006.herokuapp.com/')
 //khai bao socket la bien khong thay doi
 
 class App extends React.Component{
   constructor() {
     super()
     this.state = {
-      socketServer: '192.168.1.152:5000',
+      socketServer: 'https://shielded-springs-60006.herokuapp.com/',
       receiveMessenger: '',
       buttonTitle: 'Join',
       userName: 'ThuanYH',
@@ -18,7 +18,7 @@ class App extends React.Component{
       messages: []
     }
   }
-  // 192.168.1.152:5000 là server chung 
+  // https://shielded-springs-60006.herokuapp.com/ là server chung 
 
 componentDidMount() {
   socket.on('receive-message', (value) => {
