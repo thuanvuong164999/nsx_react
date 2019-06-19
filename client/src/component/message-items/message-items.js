@@ -13,7 +13,7 @@ class MessageItem extends React.Component {
                     <div className={'message-item-avatar ' + this.props.value.fr}>
                     {/* sau message-item-avatar phải có dấu cách để phân biệt fr */}
                         <div className='avatar-img'>
-                            <div>{this.props.value.avatar}</div>
+                            <div className='avatar-text'>{this.props.value.avatar}</div>
                         </div>
                     </div>
                     <div className={'message-list-content ' + this.props.value.fr}> 
