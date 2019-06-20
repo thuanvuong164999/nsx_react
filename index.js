@@ -9,7 +9,7 @@ const server = http.createServer(app)
 // khởi tạo 1 server thông qua http
 const io = socketIO(server)
 const moment = require('moment')
-
+const room = 'room1'
 // socket.on() mình gửi tín hiệu cho server
 io.on('connection', (socket) => {
     console.log('Connected')
@@ -21,7 +21,8 @@ io.on('connection', (socket) => {
         value.message = convert2HTML(value.message)
         value.avatar = createAvatar(value.userName)
         value.create_at = moment().format('MMMM Do YYYY, h:mm:ss a')
-        io.in(room).emit('receive-messenger', value)
+        console.log(value)
+        io.in(room).emit('receive-message', value)
     })
 
     socket.on('join', (value) => {
@@ -38,6 +39,7 @@ io.on('connection', (socket) => {
     })
 
     socket.on('typing', (value) =>{
+        console.log(value)
         io.in(room).emit('member_typing', {
             userName: value.userName
         })
@@ -80,6 +82,4 @@ function convert2HTML(message){
     return message
         .replace(/\:\)/gi, '<i class="em em-slightly_smiling_face"></i>')
         .replace(/\:\(/gi, '<i class="em em-slightly_frowning_face"></i>')
-        .replace(/\:\|/g, '<i class="em em-neutral_face"></i>')
-        .replace(/\>\</g, '<i class="em em-tired_face"></i>')
 }

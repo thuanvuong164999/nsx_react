@@ -3,7 +3,7 @@
     text-align: left;
     margin: auto;
     width: 80%;
-    border-radius: 10px;
+    border-radius: 0px;
     position: relative;
     background: #fff;
     .message-list {
@@ -12,5 +12,6 @@
         overflow-y: auto;
         overflow-x: hidden;
         max-height: 300px;
+        
     }    
 }

@@ -11,3 +11,7 @@ tạo thanh cuốn
 \d -> 0-9
 \w -> chữ cái
 \s -> khoảng trắng
+
+"server": "node index.js",
+    "client": "cd client && npm start",
+    "start": "concurrently \"npm run server\" \"npm run client\""

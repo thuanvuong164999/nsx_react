@@ -1,5 +1,6 @@
 import React from 'react'
 import './message-items.scss'
+import Avatar from 'react-avatar'
 
 class MessageItem extends React.Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class MessageItem extends React.Component {
                     <div className={'message-item-avatar ' + this.props.value.fr}>
                     {/* sau message-item-avatar phải có dấu cách để phân biệt fr */}
                         <div className='avatar-img'>
-                            <div className='avatar-text'>{this.props.value.avatar}</div>
+                            <Avatar name={this.props.value.user} size='50px' round='50%' maxInitials={2} />
                         </div>
                     </div>
                     <div className={'message-list-content ' + this.props.value.fr}> 

@@ -2,17 +2,16 @@ import React from 'react';
 import './App.scss';
 import socketIOClient from 'socket.io-client'
 import MessageList from './component/message-list/message-list';
-const socket = socketIOClient('http://6186deb9.ngrok.io/')
+const socket = socketIOClient('localhost:5000')
 //khai bao socket la bien khong thay doi
 
 class App extends React.Component{
   constructor() {
     super()
     this.state = {
-      socketServer: 'http://6186deb9.ngrok.io/',
       receiveMessenger: '',
       buttonTitle: 'Join',
-      userName: 'ThuanYH',
+      userName: 'T huanYH',
       afterEnter:'',
       message: '',
       messages: []
@@ -57,6 +56,7 @@ componentDidMount() {
       this.setState({
         messages: items
       })
+      console.log(items)
       this.setMessage(`${value.userName}:${value.message}`)
     })
   }
