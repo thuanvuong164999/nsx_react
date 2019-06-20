@@ -2,14 +2,14 @@ import React from 'react';
 import './App.scss';
 import socketIOClient from 'socket.io-client'
 import MessageList from './component/message-list/message-list';
-const socket = socketIOClient('192.168.1.152:5000')
+const socket = socketIOClient('http://6186deb9.ngrok.io/')
 //khai bao socket la bien khong thay doi
 
 class App extends React.Component{
   constructor() {
     super()
     this.state = {
-      socketServer: '192.168.1.152:5000',
+      socketServer: 'http://6186deb9.ngrok.io/',
       receiveMessenger: '',
       buttonTitle: 'Join',
       userName: 'ThuanYH',
@@ -49,6 +49,7 @@ componentDidMount() {
         user: value.userName,
         avatar: value.avatar,
         message: value.message,
+        createAt: value.created_at,
         fr:value.userName === this.state.userName ? 'fr':''
       }
       let items = this.state.messages
@@ -152,6 +153,7 @@ componentDidMount() {
               <input type='text' value={this.state.afterEnter} onKeyPress={this.onKeyPress} onChange={this.onChange}></input>
               <button type='submit' onClick={e => this.onClick(e)}>{this.state.buttonTitle}</button>
             </div>
+            
           </div>
         </div>
       </div>

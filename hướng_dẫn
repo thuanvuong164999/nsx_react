@@ -4,3 +4,10 @@
 
 overflow: auto; 
 tạo thanh cuốn
+
+:) -> <i class="em em-slightly_smiling_face"></i>
+:( -> <i class="em em-disappointed"></i>
+
+\d -> 0-9
+\w -> chữ cái
+\s -> khoảng trắng
