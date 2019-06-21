@@ -2,8 +2,8 @@ import React from 'react';
 import './App.scss';
 import socketIOClient from 'socket.io-client'
 import MessageList from './component/message-list/message-list';
-const socket = socketIOClient('localhost:5000')
-//khai bao socket la bien khong thay doi
+const socket = socketIOClient('https://dry-waters-46959.herokuapp.com/')
+//khai bao socket la bien khong thay doi localhost:5000
 
 class App extends React.Component{
   constructor() {
