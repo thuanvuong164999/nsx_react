@@ -48,7 +48,7 @@ componentDidMount() {
         user: value.userName,
         avatar: value.avatar,
         message: value.message,
-        createAt: value.created_at,
+        createAt: value.create_at,
         fr:value.userName === this.state.userName ? 'fr':''
       }
       let items = this.state.messages
