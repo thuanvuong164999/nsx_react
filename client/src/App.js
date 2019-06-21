@@ -2,6 +2,7 @@ import React from 'react';
 import './App.scss';
 import socketIOClient from 'socket.io-client'
 import MessageList from './component/message-list/message-list';
+import FriendList from './component/friends-list/friend-list';
 const socket = socketIOClient('localhost:5000')
 //khai bao socket la bien khong thay doi localhost:5000
 
@@ -143,6 +144,7 @@ componentDidMount() {
   render(){
     return (
       <div className="App">
+        {/* <FriendList></FriendList> */}
         <div className='App-Container'>
           <div className='chat-box'>
             <div className='receive-messenger'>

@@ -83,8 +83,8 @@ function convert2HTML(message){
         .replace(/\:\)/gi, '<i class="em em-slightly_smiling_face">')
         .replace(/\:\(/gi, '<i class="em em-slightly_frowning_face">')
         .replace(/\:d/g, '<i class="em em-zany_face">')
-        .replace(/\:|/g,'<i class="em em-neutral_face">')
-        
+        // .replace(/\:|/g,'<i class="em em-neutral_face">')
+        // không sử dụng được ký hiệu |
         .replace(/\@b/g, '<i class="em em---1">')
         .replace(/\@p/g, '<i class="em em--1">')
         .replace(/\@100/g, '<i class="em em-100">')
