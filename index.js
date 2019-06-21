@@ -80,6 +80,19 @@ function createAvatar(userStr){
 
 function convert2HTML(message){
     return message
-        .replace(/\:\)/gi, '<i class="em em-slightly_smiling_face"></i>')
-        .replace(/\:\(/gi, '<i class="em em-slightly_frowning_face"></i>')
+        .replace(/\:\)/gi, '<i class="em em-slightly_smiling_face">')
+        .replace(/\:\(/gi, '<i class="em em-slightly_frowning_face">')
+        .replace(/\:d/g, '<i class="em em-zany_face">')
+        .replace(/\:|/g,'<i class="em em-neutral_face">')
+        
+        .replace(/\@b/g, '<i class="em em---1">')
+        .replace(/\@p/g, '<i class="em em--1">')
+        .replace(/\@100/g, '<i class="em em-100">')
+        .replace(/\></g, '<i class="em em-tired_face">')
+        .replace(/\:o/gi, '<i class="em em-astonished">')
+        .replace(/\@@/g, '<i class="em em-dizzy_face">')
+        .replace(/\@beers/g, '<i class="em em-beers">')
+        .replace(/\@anger/g, '<i class="em em-anger">')
+        .replace(/\@clock/g, '<i class="em em-alarm_clock">')
+        // tại sao máy tính e không cần </i>
 }

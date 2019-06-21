@@ -24,7 +24,7 @@ class MessageItem extends React.Component {
                             {/* {this.props.value.message}  code cũ*/}
                         </div>
                         <div className='created'>
-                            {this.props.value.createAt}
+                            <div className='time'>{this.props.value.createAt}</div>
                         </div>
                     </div>
                 </div>

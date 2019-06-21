@@ -2,7 +2,7 @@ import React from 'react';
 import './App.scss';
 import socketIOClient from 'socket.io-client'
 import MessageList from './component/message-list/message-list';
-const socket = socketIOClient('https://dry-waters-46959.herokuapp.com/')
+const socket = socketIOClient('localhost:5000')
 //khai bao socket la bien khong thay doi localhost:5000
 
 class App extends React.Component{
@@ -151,6 +151,7 @@ componentDidMount() {
             </div>
             <div className='send-messenger'>
               <input type='text' value={this.state.afterEnter} onKeyPress={this.onKeyPress} onChange={this.onChange}></input>
+              {/* <button className='icon'><i class="em em-slightly_smiling_face"></i></button> */}
               <button type='submit' onClick={e => this.onClick(e)}>{this.state.buttonTitle}</button>
             </div>
             
