@@ -144,7 +144,7 @@ componentDidMount() {
   render(){
     return (
       <div className="App">
-        {/* <FriendList></FriendList> */}
+        <FriendList></FriendList>
         <div className='App-Container'>
           <div className='chat-box'>
             <div className='receive-messenger'>
