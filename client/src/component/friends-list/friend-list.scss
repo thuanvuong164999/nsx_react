@@ -15,9 +15,10 @@
         background-color: #ccc;
         // border: 0.2px solid black;
         border-radius: 15px;
-        margin-top: 2%;
-        margin-bottom: 2%;
-        line-height: 40px;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        line-height: 50px;
+        font-size: 1.2em;
         p{
             text-align: center;
             font-size: 1.1em;
@@ -34,14 +35,16 @@
         border: 0.5px solid black;
         border-radius: 15px;
         .icon-search{
-            float: left;
+            float: right;
             height: 85%;
             width: 7%;
-            border:1px solid black;
+            // border:1px solid black;
             margin-left: 1%;
+            border-radius: 50%;
+            background-color: blue;
         }
         .search-text{
-            float: right;
+            float: left;
             width: 90%;
             height: 85%;
             border: none;
@@ -63,7 +66,7 @@
         width: 90%;
         height: 75%;
         margin: auto;
-        margin-top: 2%;
+        margin-top: 1%;
         border-radius: 15px;
         background-color: #ccffff;
     }

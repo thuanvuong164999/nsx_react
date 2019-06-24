@@ -15,3 +15,5 @@ tạo thanh cuốn
 "server": "node index.js",
     "client": "cd client && npm start",
     "start": "concurrently \"npm run server\" \"npm run client\""
+
+tên class bắt đầu bằng chữ hoa

@@ -1,0 +1,30 @@
+.App {
+    text-align: center;
+    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+    height: 100vh;
+    padding: 10px;
+    .Chat-Container{
+      // margin: auto;
+      margin-right: 2%;
+      float: right;
+      margin-top: 6%;
+      height: 75%;
+      width: 55%; 
+      .chat-box{
+        width: 100%;
+        height: 100%;
+        position: relative;
+        .receive-messenger{
+          width: 100%;
+          height: 84%;
+          background-color: white;
+          // border: 1px solid black;
+          border-radius: 15px 15px 0px 0px;
+        }
+      }
+    }
+  }
+  
+  
+  
+  

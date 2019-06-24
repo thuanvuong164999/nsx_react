@@ -1,0 +1,42 @@
+.send-messenger{
+    // margin: auto;
+    background-color: #f2f2f2;
+    padding: 5px; 
+    // border: 1px solid black;
+    border-radius: 0px 0px 15px 15px;
+    height: 70px;
+    input{
+      width: 75%;
+      height: 90%;
+      margin-top: 1%;
+      max-height: 40px;
+      min-height: 40px;
+      border-radius: 15px;
+      float: left;
+      padding-left: 1%;
+      padding-right: 1%;
+      // padding: 5px;
+      font-size: 1.1em;
+      // margin-right: 55px; 
+    }
+    button{
+      // float: right;
+      border-radius: 5px;
+      margin: auto;
+      margin-top: 14px;
+      height: 50%;
+      width: 15%;
+      // margin-right: 55px;
+      font-size: 1.2em;
+      // margin-top: auto;
+      // margin-bottom: auto;
+    }
+    // .icon{
+    //   height: 40px;
+    //   width: 40px;
+    //   i{
+    //     margin: auto;
+        
+    //   }
+    // }
+  }

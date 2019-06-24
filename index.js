@@ -11,6 +11,7 @@ const io = socketIO(server)
 const moment = require('moment')
 const room = 'room1'
 // socket.on() mình gửi tín hiệu cho server
+
 io.on('connection', (socket) => {
     console.log('Connected')
     socket.on('send-message', (value) => {
@@ -20,7 +21,7 @@ io.on('connection', (socket) => {
         // value.message = convert2Icon(value.message)
         value.message = convert2HTML(value.message)
         value.avatar = createAvatar(value.userName)
-        value.create_at = moment().format('MMMM Do YYYY, h:mm:ss a')
+        value.created_at = moment().format('MMMM Do YYYY, h:mm:ss a')
         console.log(value)
         io.in(room).emit('receive-message', value)
     })
