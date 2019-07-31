@@ -12,25 +12,25 @@ class SendMessage extends React.Component {
     // let SocketService = new SocketService()
     // SocketService.join('ks')
 
-    var today = new Date(), //khai báo khu chứa today, chứa ttin ra Date()
-      ddate = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate(),
-      ttime = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    // var today = new Date(), //khai báo khu chứa today, chứa ttin ra Date()
+    //   ddate = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate(),
+    //   ttime = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
 
     this.state = {
       DaT: '',
       receiveMessages: '',
       buttonTitle: 'Join',
-      userName: userName,
+      userName: userName, //truyền biến lần 1, Vuong Dung Thuan
       message: '',
       emoji: '',
       avatar: '', //Avatar by shorten userName
       changeInput: '',
       open: false,  //noti EmojiMenu was opened ?? 
-      date: ddate,
-      time: ttime,
+      // date: ddate,
+      // time: ttime,
       messages: [
       ],
-      room:0
+      room: 0 //mặc định 1 room
     }
   }
 
@@ -77,43 +77,43 @@ class SendMessage extends React.Component {
   //   document.getElementById("emoji-mart").style.display = "none"
   // }
 
-  onJoined() {
-    socket.on('joined', (user) => {
+  onJoined() { //khai báo hàm onJoined()
+    socket.on('joined', (user) => { //nhận tín hiệu từ socket 'joined' và giá trị biến 'user'
       console.log('Joined: ', user)
-      this.setMessage(`User ${user.userName} joined`)
-      this.setState({
-        room:user.room
+      this.setMessage(`User ${user.userName} joined`) //thực hiện hàm setMessage(message)
+      this.setState({ //thay đổi giá trị biến 'room'
+        room: user.room //truyền biến room trong user vào room
       })
     })
   }
 
-  onLeaved() {
-    socket.on('leaved', (user) => {
-      console.log('Leaved: ', user)
-      this.setMessage(`User ${user.userName} leaved`)
+  onLeaved() { //khai báo hàm onLeaved()
+    socket.on('leaved', (user) => { //nhận tín hiệu từ socket 'leaved' và giá trị biến 'user'
+      console.log('Leaved: ', user) 
+      this.setMessage(`User ${user.userName} leaved`) //thực hiện hàm setMessage(message)
     })
   }
 
-  setMessage(message) {
+  setMessage(message) { //khai báo hàm setMessage(message)
     let messages = this.state.receiveMessages
     // messages = messages + '\n' + message
     messages = message + '\n' + messages
-    this.setState({
-      receiveMessages: messages
+    this.setState({ //thay đổi giá trị biến trong State
+      receiveMessages: messages //truyền messages vào receiveMessages
     })
   }
 
   onKeyPress = event => { //tạo event onKeyPress, sử dụng khi có sự thay đổi trên bàn phím
-    if (event.key === 'Enter') { //nếu event nhận khí tự trên bàn phím là Enter
+    if (event.key === 'Enter') { //nếu event nhận kí tự trên bàn phím là Enter
       // event.preventDefault()
+      console.log(event.target.value)
       if (event.target.value === '') 
         return;
       else {
-        console.log(event.target.value)
-        socket.emit('send-message', { //socket gữi lên server tín hiệu send-message và ...
-          userName: this.state.userName,
-          message: event.target.value,
-          room: this.state.room
+        socket.emit('send-message', { //socket gữi lên server tín hiệu send-message và các biến ...
+          userName: this.state.userName, //truyền giá trị biến userName trong State vào biến userName, rùi gửi đi
+          message: event.target.value, 
+          room: this.state.room //truyền giá trị biến room trong State vào biến room, rùi gửi đi
         })
       }
 
@@ -127,7 +127,7 @@ class SendMessage extends React.Component {
       else
         ttime = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
 
-      this.setState({ //liệt kê các biến có thể thay đổi
+      this.setState({ //thay đổi lại các biến trong State
         message: '',
         date: ddate,
         time: ttime
@@ -147,12 +147,12 @@ class SendMessage extends React.Component {
     this.setState({ //biến có thể thay đổi trong event
       buttonTitle: title //giá trị trong title được gán vào buttonTitle
     })
-  }
+  } //sử dụng cho btn, thay đổi giá trị buttonTitle trong state
 
   join() { //gọi hàm join()
-    socket.emit('join', { //socket gửi cho server tính hiệu join và ...
-      userName: this.state.userName, 
-      avatar: this.state.avatar
+    socket.emit('join', { //gửi tín hiệu join cho socket và các biến sau
+      userName: this.state.userName, //truyền giá trị biến userName trong State vào userName và gửi đi
+      avatar: this.state.avatar //truyền giá trị biến avatar trong State vào biến avatatar, rùi gửi đi
     })
   }
 
@@ -163,15 +163,12 @@ class SendMessage extends React.Component {
   }
 
   onChange = event => { //gọi event onChange, sử dụng cho đối tượng có sự thay đổi liên tục
-    this.setState({ //khai báo giá trị thay đổi trong event
-      message: event.target.value
-    })
-
-    this.setState({ 
+    this.setState({ //thay đổi giá trị biến trong state
+      message: event.target.value,
       changeInput: '<span role="image" aria-label="slightly-smiling-face">&#x1f642</span>'
     })
 
-    socket.emit('typing', { //socket gữi tín hiệu typing cho server
+    socket.emit('typing', { //gửi tín hiệu 'typing' là các biên cho socket
       userName: this.state.userName,
       text: event.target.value
     })

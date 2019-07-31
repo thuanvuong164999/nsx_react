@@ -180,8 +180,8 @@ function save2DB(value, room_id) {
     })
 }
 
-function getOldDataFromDB(roomName, room_id, userName){
-    console.log(`histories-${userName}`, room_id, roomName)
+function getOldDataFromDB(room_id, userName){
+    console.log(`histories-${userName}`, room_id)
     pool.connect(function(err, client, done) {
         client.query(`select * from histories where id_chanel = ${room_id}`, function(err, result){
             // console.log(result)

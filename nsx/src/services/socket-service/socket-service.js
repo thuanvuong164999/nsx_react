@@ -1,6 +1,7 @@
 import socketIOClient from 'socket.io-client'
 
-export const serverEndPoint = 'http://3742513f.ngrok.io'
+//khai báo các biến không đổi và sử dụng thường xuyên
+export const serverEndPoint = 'http://d1fff29b.ngrok.io'
 
 export const socket = socketIOClient(serverEndPoint)
-export const userName = 'Thuan Vuong'
+export const userName = 'Vuong Dung Thuan'

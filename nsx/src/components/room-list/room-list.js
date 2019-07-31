@@ -30,8 +30,7 @@ class RoomList extends React.Component {
                 // handle success
                 // console.log(response);
                 console.log(response.data.data);
-                // thay đổi nội dung trong self
-                self.setState({
+                self.setState({ // thay đổi nội dung trong self (this)
                     rooms: response.data.data // gán giá trị response.data.data vào rooms
                 })
             })
@@ -72,10 +71,10 @@ class RoomList extends React.Component {
             });
     }
 
-    onClick = (event, id) => { //tạo event click để show ra data
-        console.log('Clicked', id) //id là id trong database
+    onClick = (event, id) => { //gọi event 'onClick', truyền biến 'id' cho event
+        console.log('Clicked', id) 
 
-        socket.emit('join', { //khi click vào socket sẽ gữi server (emit) tín hiệu join, userName, room
+        socket.emit('join', { //gửi tín hiệu 'join' và các biến cho socket
             userName: userName,
             room: id
         })
@@ -93,7 +92,7 @@ class RoomList extends React.Component {
                                 this.state.rooms_chanels.map((value, index) => { //nhiều data (map) trong rooms được truyền vào value 
                                     return (
                                         <li key={index} onClick={(e) => this.onClick(e, value.id)}>{value.name}</li>
-                                        // e : event
+                                        // e : event    //sử dụng event onClick //truyền id trong value vào id trong event
                                     )
                                 })
                             }

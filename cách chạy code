@@ -1,0 +1,69 @@
+không hiểu
+    send-message.js 98-100
+    send-message.js 120-128
+index.js (server)
+    -> nhận tín hiệu 'send-message' và biến 'value' từ socket 31
+        khai báo roomName (value.room) 33
+        khai báo msg (value.message) 35
+        khai báo DaT 38
+        khai báo ava (value.userName) 42
+        -> gửi tín hiệu 'receive-message' cho io.in(roomName) 46
+        + thực hiện lệnh save2DB
+    -> nhận tín hiệu 'join' và biến value 51
+        + socket thực hiện hàm join() 55
+        -> gửi tín hiệu 'joined' cho io.in(roomName)
+        + thực hiện hàm getOldDataFromDB()
+    -> nhận tín hiệu 'leave' và biến value từ socket
+        -> gửi 'leaved' cho io.in(roomName)
+        + thực hiện hàm leave()
+    -> nhận 'typing' và biến value 68
+
+    --> khai báo API /api/room-list 96
+    --> khai báo API /api/room-list/chanels 110
+    --> khai báo API /api/room-list/messengers 124
+
+    --> khai báo function convert2Icon(message)
+    --> khai báo function createAvatar(userStr)
+    --> khai báo function save2DB(value, room_id)
+    --> khai báo function getOldDataFromDB(room_id, userName)
+    --> khai báo function generrateRoom(roomName, id)
+    
+send-message
+    hàm join()
+        -> gửi tín hiệu 'join' và các biến cho socket 152-157
+            userName, avatar
+    hàm leave()
+        -> gửi tín hiệu 'leave' và các biến cho socket 159-163
+            userName
+    hàm onJoined() 80-88
+        -> nhận tín hiệu 'joined'
+        nhận giá trị biến user
+        + thực hiện lệnh setMessage
+        thay đổi giá trị biến room
+    hàm onLeaved() 90-95
+        -> nhận tín hiệu leaved 
+        nhận giá trị biến user
+        thực hiện hàm setMessage
+    event onKeyPress 106
+        sử dụng khi thay đổi ký tự trên bàn phím
+        -> gửi tín hiệu send-message cho socket
+        gửi các biến userName, message, room trong state
+    event onClick
+        sử dụng khi click
+    event onChange
+        sử dụng khi thay đổi nd liên tục
+        sử dụng thay đổi message
+        -> gửi tín hiệu 'typing' cho socket
+        gửi các biến userName, text
+room-list
+    gọi API /api/room-list 28
+    gọi API /api/room-list/chanels 45
+    gọi API /api/room-list/messengers 59
+
+    event onClick 74
+        -> gửi tín hiệu join cho socket
+        gửi các biến userName, room
+        sử dụng cho room-list
+
+
+    
